@@ -15,7 +15,19 @@ in your local browser and see the app running.
 To stop containers, use
 ```docker-compose -f "docker-compose.dev.yml" down```
 
+You have to run
+```docker-compose -f "docker-compose.dev.yml" build```
+every time you add a new gem!
+
 To use PgAdmin, go to localhost:5555, register server with 
 hostname `host.docker.internal`
 maintenance database `example_app_development`
-username & password from `.env` `POSTGRES_USER_DEV` and `POSTGRES_PW_DEV` 
+username & password from `.env` `POSTGRES_USER_DEV` and `POSTGRES_PW_DEV`
+
+##Push changes to heroku
+Use `git push heroku main` to push main branch to Heroku
+Use `heroku run rake db:migrate` to run migrations
+Use `heroku open` to launch app in the browser
+Use `heroku logs` to see the logs
+Use `heroku run [command]` to run rails / rake commands
+
