@@ -1,0 +1,41 @@
+FROM ruby:3.1.1-alpine3.13
+
+ARG APP_PATH=/myapp
+ARG APP_USER=appuser
+ARG APP_GROUP=appgroup
+ENV RAILS_ENV production
+ENV RAILS_SERVE_STATIC_FILES true 
+# ^ (unless nginx, etc.. is used)
+ENV RAILS_LOG_TO_STDOUT true
+
+RUN apk add --update \
+    --no-cache bash \
+    build-base \
+    git \
+    postgresql-dev \
+    postgresql-client && \
+  addgroup -S $APP_GROUP && \
+
+  adduser -S -s /sbin/nologin -G $APP_GROUP $APP_USER && \
+  # The /sbin/nologin command politely refuse a login. It displays a message that 
+  # an account is not available and exits non-zero. This is prefreed method these 
+  # days to deny login access to account.
+
+  mkdir $APP_PATH && \
+  chown $APP_USER:$APP_GROUP $APP_PATH
+
+WORKDIR $APP_PATH
+# Add a script to be executed every time the container starts.
+COPY entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+COPY --chown=$APP_USER:$APP_GROUP Gemfile* $APP_PATH/
+# The command chown, an abbreviation of change owner, is used on 
+# Unix and Unix-like operating systems to change the owner of 
+# file system files, directories.
+RUN bundle install
+USER $APP_USER
+COPY --chown=$APP_USER:$APP_GROUP . $APP_PATH/
+ENTRYPOINT ["entrypoint.sh"]
+EXPOSE 3000
+# Start the main process.
+CMD ["rails", "server", "-b", "0.0.0.0"]

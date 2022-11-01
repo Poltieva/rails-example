@@ -1,0 +1,48 @@
+version: "3.6"
+
+services:
+  db:
+    env_file:
+      - '.env'
+    image: postgres:latest
+    restart: always
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - 5432:5432  
+    environment:
+      - POSTGRES_DB=example_app_development
+      - POSTGRES_USER=${POSTGRES_USER_DEV}
+      - POSTGRES_PASSWORD=${POSTGRES_PW_DEV}
+  web:
+    env_file:
+      - '.env'
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/myapp
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db  
+  pgadmin:
+    env_file:
+      - '.env'
+    image: dpage/pgadmin4
+    depends_on:
+      - db
+    ports:
+      - "5555:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL_DEV}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PW_DEV}
+    restart: unless-stopped
+  mailcatcher:
+    image: jeanberu/mailcatcher
+    ports:
+      - "1025:1025"
+      - "1080:1080"
+volumes:
+  pgdata:

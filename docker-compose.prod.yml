@@ -1,0 +1,27 @@
+version: "3.6"
+
+services:
+  web:
+    env_file:
+      - '.env'
+    build: 
+      context: .
+      dockerfile: Dockerfile.web
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - myapp_vol:/myapp
+    ports:
+      - "80:3000"
+  pgadmin:
+    env_file:
+      - '.env'
+    image: dpage/pgadmin4
+    ports:
+      - "5555:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL_PROD}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PW_PROD}
+      POSTGRES_DB: ${DATABASE_PROD}
+    restart: unless-stopped
+volumes:
+  myapp_vol:
