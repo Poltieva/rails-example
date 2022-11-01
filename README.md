@@ -15,6 +15,10 @@ in your local browser and see the app running.
 To stop containers, use
 ```docker-compose -f "docker-compose.dev.yml" down```
 
+You have to run
+```docker-compose -f "docker-compose.dev.yml" build```
+every time you add a new gem!
+
 To use PgAdmin, go to localhost:5555, register server with 
 hostname `host.docker.internal`
 maintenance database `example_app_development`
