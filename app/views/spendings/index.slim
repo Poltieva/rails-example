@@ -1,11 +1,8 @@
-h1 All spendings
-table
-  tr
-    th Name
-    th Amount
-    th Category
+div.header
+  h1 All spendings
+= turbo_frame_tag "new_spending_frame" do
+    = link_to "New spending", new_spending_path, class: "btn btn--primary"
+
+ul
   - @spendings.each do |spending|
-    tr
-      td = spending.name
-      td = spending.amount
-      td = spending.category
+    = render "spending", spending: spending
