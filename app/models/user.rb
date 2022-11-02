@@ -3,6 +3,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          authentication_keys: [:login]
 
+  has_many :spendings
+
   validates :username, presence: true, uniqueness: { case_sensitive: false },
             format: {with: /\A[a-zA-Z0-9_\.]+\z/}
 

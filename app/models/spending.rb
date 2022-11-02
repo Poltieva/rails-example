@@ -4,4 +4,6 @@ class Spending < ApplicationRecord
              greater_than_or_equal_to: 0,
              less_than_or_equal_to: 10000
            }
+
+  has_one :user
 end
