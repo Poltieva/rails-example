@@ -5,5 +5,6 @@ class Spending < ApplicationRecord
              less_than_or_equal_to: 10000
            }
 
-  has_one :user
+  belongs_to :user
+  validates_presence_of :name
 end

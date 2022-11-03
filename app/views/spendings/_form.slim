@@ -1,4 +1,10 @@
 = form_with model: spending do |form|
+  - if spending.errors.any?
+    p = spending.errors.full_messages
+    = content_tag :div, class: build_alert_classes(:alert) do
+      ul
+        - spending.errors.full_messages.each do |error|
+          li = error
   = form.text_field :name
   = form.number_field :amount
   = form.text_field :category
