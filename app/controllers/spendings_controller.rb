@@ -63,7 +63,7 @@ class SpendingsController < ApplicationController
   private
 
   def spending_params
-    params.require(:spending).permit(:name, :amount, :category)
+    params.require(:spending).permit(:name, :amount, :category, :amount_cents, :amount_currency)
   end
 
   def find_spending
