@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SpendingsController < ApplicationController
   include TurboStreamErrorsConcern
 
@@ -9,13 +11,19 @@ class SpendingsController < ApplicationController
     respond_to do |format|
       if @spending.save
         format.turbo_stream
-        format.html { redirect_to spendings_path, status: :see_other, notice: "Spending was successfully created." }
+        format.html do
+          redirect_to spendings_path, status: :see_other,
+                                      notice: 'Spending was successfully created.'
+        end
       else
         format.turbo_stream do
           render turbo_stream:
-            stream_errors(error_message= @spending.errors.full_messages.join(';'))
+            stream_errors(@spending.errors.full_messages.join(';'))
         end
-        format.html { redirect_to spendings_path, status: :unprocessable_entity, alert: @spending.errors.full_messages.join(';') }
+        format.html do
+          redirect_to spendings_path, status: :unprocessable_entity,
+                                      alert: @spending.errors.full_messages.join(';')
+        end
       end
     end
   end
@@ -34,9 +42,12 @@ class SpendingsController < ApplicationController
     respond_to do |format|
       if @spending.update(spending_params)
         format.turbo_stream
-        format.html { redirect_to spendings_path, status: :see_other, notice: "Spending was successfully updated." }
+        format.html do
+          redirect_to spendings_path, status: :see_other,
+                                      notice: 'Spending was successfully updated.'
+        end
       else
-        format.html {render :edit}
+        format.html { render :edit }
       end
     end
   end

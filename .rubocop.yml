@@ -1,0 +1,109 @@
+AllCops:
+  TargetRubyVersion: 3.1
+  Exclude:
+    - 'bin/*'
+    - 'db/**/*.rb'
+    - 'doc/**/*.xml'
+    - '.pryrc'
+    - 'config/**/*'
+Metrics/BlockLength:
+  Exclude:
+    - 'config/environments/*.rb'
+    - 'config/routes.rb'
+    - 'Gemfile'
+    - 'lib/tasks/**/*.rake'
+    - 'spec/**/*.rb'
+Layout/LineLength:
+  Max: 100
+  Exclude:
+    - Gemfile
+Metrics/MethodLength:
+  Max: 31
+  Exclude:
+    - Gemfile
+Metrics/AbcSize:
+  Max: 25
+Style/Documentation:
+  Enabled: false
+Style/GlobalVars:
+  Enabled: false
+Style/Lambda:
+  EnforcedStyle: literal
+Style/FormatStringToken:
+  EnforcedStyle: annotated
+Layout/HashAlignment:
+  EnforcedHashRocketStyle: table
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+Lint/BinaryOperatorWithIdenticalOperands:
+  Enabled: true
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: true
+Lint/DuplicateElsifCondition:
+  Enabled: true
+Lint/DuplicateRescueException:
+  Enabled: true
+Lint/EmptyConditionalBody:
+  Enabled: true
+Lint/FloatComparison:
+  Enabled: false
+Lint/MissingSuper:
+  Enabled: false
+Lint/MixedRegexpCaptureTypes:
+  Enabled: true
+Lint/OutOfRangeRegexpRef:
+  Enabled: true
+Lint/RaiseException:
+  Enabled: true
+Lint/SelfAssignment:
+  Enabled: true
+Lint/StructNewOverride:
+  Enabled: true
+Lint/TopLevelReturnWithArgument:
+  Enabled: true
+Lint/UnreachableLoop:
+  Enabled: true
+Style/AccessorGrouping:
+  Enabled: true
+Style/ArrayCoercion:
+  Enabled: true
+Style/BisectedAttrAccessor:
+  Enabled: true
+Style/CaseLikeIf:
+  Enabled: true
+Style/ExplicitBlockArgument:
+  Enabled: false
+Style/ExponentialNotation:
+  Enabled: true
+Style/GlobalStdStream:
+  Enabled: true
+Style/HashAsLastArrayItem:
+  Enabled: true
+Style/HashEachMethods:
+  Enabled: true
+Style/HashLikeCase:
+  Enabled: true
+Style/HashTransformKeys:
+  Enabled: true
+Style/HashTransformValues:
+  Enabled: true
+Style/OptionalBooleanParameter:
+  Enabled: false
+Style/RedundantAssignment:
+  Enabled: true
+Style/RedundantFetchBlock:
+  Enabled: false
+Style/RedundantFileExtensionInRequire:
+  Enabled: true
+Style/RedundantRegexpCharacterClass:
+  Enabled: true
+Style/RedundantRegexpEscape:
+  Enabled: false # because it matches html escapes
+Style/SingleArgumentDig:
+  Enabled: false
+Style/SlicingWithRange:
+  Enabled: true
+Style/StringConcatenation:
+  Enabled: false
