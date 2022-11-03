@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class Spending < ApplicationRecord
-  monetize :amount_cents, allow_nil: true,
+  monetize :amount_cents, allow_nil: false,
                           numericality: {
-                            greater_than_or_equal_to: 0,
+                            greater_than: 0,
                             less_than_or_equal_to: 10_000
                           }
 
