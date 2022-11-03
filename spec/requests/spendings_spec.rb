@@ -26,15 +26,20 @@ RSpec.describe 'Spendings', type: :request do
   before(:each) { sign_in(user) }
 
   describe 'GET /index' do
-    before(:each) { get spendings_url }
+    before(:each) do
+      user
+      spendings
+      get spendings_url
+    end
+
     it 'should render the correct template' do
       expect(response).to have_http_status :ok
       expect(response).to render_template :index
     end
     it 'should display all spendings' do
       spendings.each do |spending|
-        expect(response.body).to include(spending.name)
-        expect(response.body).to include(spending.amount)
+        expect(response.body).to include(ERB::Util.html_escape(spending.name))
+        expect(response.body).to include(spending.amount.to_s)
         expect(response.body).to include(spending.category)
       end
     end
@@ -85,6 +90,7 @@ RSpec.describe 'Spendings', type: :request do
   let(:new_spending) { create(:spending, user: user)}
   describe 'DELETE /spending/:id' do
     it 'should delete a spending' do
+      new_spending
       expect { delete spending_path(new_spending.id) }
         .to change { Spending.count }.by(-1)
     end

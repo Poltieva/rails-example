@@ -67,6 +67,8 @@ end
 
 group :test do
   gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main'
+  gem 'simplecov', require: false
+  gem 'rails-controller-testing'
 end
 
 group :development do
