@@ -2,7 +2,7 @@ class SpendingsController < ApplicationController
   include TurboStreamErrorsConcern
 
   before_action :authenticate_user!
-  before_action :find_spending, only: %i[edit update]
+  before_action :find_spending, only: %i[edit update destroy]
 
   def create
     @spending = current_user.spendings.build(spending_params)
@@ -41,7 +41,16 @@ class SpendingsController < ApplicationController
     end
   end
 
+  def destroy
+    @spending.destroy
+    respond_to do |format|
+      format.html { redirect_to spendings_path, notice: 'Spending was successfully destroyed' }
+      format.turbo_stream
+    end
+  end
+
   private
+
   def spending_params
     params.require(:spending).permit(:name, :amount, :category)
   end

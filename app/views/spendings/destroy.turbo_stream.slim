@@ -1,0 +1,5 @@
+= turbo_stream.replace "spending_#{@spending.id}" do
+  p
+
+= turbo_stream.replace "messagesContainer" do
+  = render "layouts/flash", flash: { notice: "Spending was successfully destroyed." }
