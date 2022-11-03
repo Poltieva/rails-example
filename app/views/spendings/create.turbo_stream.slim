@@ -1,0 +1,5 @@
+= turbo_stream.prepend "all_spendings" do
+  = render 'spending', spending: @spending
+
+= turbo_stream.replace "messagesContainer" do
+  = render "layouts/flash", flash: { notice: "Spending was successfully created." }

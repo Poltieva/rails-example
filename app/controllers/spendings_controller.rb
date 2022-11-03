@@ -1,6 +1,24 @@
 class SpendingsController < ApplicationController
+  include TurboStreamErrorsConcern
+
   before_action :authenticate_user!
   before_action :find_spending, only: %i[edit update]
+
+  def create
+    @spending = current_user.spendings.build(spending_params)
+    respond_to do |format|
+      if @spending.save
+        format.turbo_stream
+        format.html { redirect_to spendings_path, status: :see_other, notice: "Spending was successfully created." }
+      else
+        format.turbo_stream do
+          render turbo_stream:
+            stream_errors(error_message= @spending.errors.full_messages.join(';'))
+        end
+        format.html { redirect_to spendings_path, status: :unprocessable_entity, alert: @spending.errors.full_messages.join(';') }
+      end
+    end
+  end
 
   def index
     @spendings = current_user.spendings

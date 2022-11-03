@@ -1,2 +1,5 @@
 = turbo_stream.replace "spending_#{@spending.id}" do
   = render 'spending', spending: @spending
+
+= turbo_stream.replace "messagesContainer" do
+  = render "layouts/flash", flash: { notice: "Spending was successfully updated." }
