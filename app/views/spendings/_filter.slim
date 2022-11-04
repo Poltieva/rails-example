@@ -1,0 +1,4 @@
+.filter.flex-shrink-0
+  a.all href=spendings_url class=(!@filter ? 'current' : '') All spendings
+  a.amount href=spendings_url(filter: 'amount') class=(@filter == "amount" ? 'current' : '') Sorted by amount
+  a.category class=(@filter == "category" ? 'current' : '') Sorted by category #{select_tag :status, options_for_select(Spending.categories.map {|k, v| [k.humanize.capitalize, k]}), prompt: @filter == "category" ? params[:category] : "Select category", onchange: 'handleCategory(this.value)'}

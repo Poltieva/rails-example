@@ -13,3 +13,23 @@
  *= require_tree .
  *= require_self
  */
+
+filter {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.filter a {
+    display: inline-flex;
+    text-align: center;
+    padding: .7em 1em;
+    margin: 5px;
+    border-radius: 25px;
+    background: crimson;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+.filter a.current {
+    background: orangered;
+    visibility: visible;
+}

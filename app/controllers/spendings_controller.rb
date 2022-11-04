@@ -30,8 +30,18 @@ class SpendingsController < ApplicationController
   end
 
   def index
-    @spendings = current_user.spendings
-    @spendings_sum = current_user.spendings.sum(:amount_cents)
+    @filter = params[:filter]
+
+    case @filter
+    when 'amount'
+      @spendings = current_user.spendings.order(amount_cents: :desc)
+    when 'category'
+      @spendings = current_user.spendings.with_category(params[:category])
+    else
+      @spendings = current_user.spendings
+    end
+
+    @spendings_sum = @spendings.sum(:amount_cents)
   end
 
   def new
