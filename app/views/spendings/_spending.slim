@@ -1,6 +1,5 @@
-
-= turbo_frame_tag "spending_#{spending.id}" do
-  div.border.border-dark.p-4
+div.border.border-dark.p-4
+  = turbo_frame_tag "spending_#{spending.id}" do
     div.row
       div.col-sm Name: #{spending.name}
       div.col-sm Category: #{spending.category}
