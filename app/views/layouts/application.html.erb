@@ -16,7 +16,7 @@
   <ul class="navbar-nav mr-auto p-3 bg-info text-white">
     <p class="navbar-text float-right">
       <% if user_signed_in? %>
-        Logged in as <strong><%= current_user.email %></strong>.
+        Logged in as <strong><%= current_user.username %></strong>.
         <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
         <%= link_to "Logout", destroy_user_session_path, :class => 'navbar-link'  %>
       <% else %>
