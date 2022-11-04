@@ -9,4 +9,5 @@ class Spending < ApplicationRecord
 
   belongs_to :user
   validates_presence_of :name
+  enum category: {traveling: 0, clothing: 1, taxi: 3, cafes: 4, shops: 5, other: 6}
 end

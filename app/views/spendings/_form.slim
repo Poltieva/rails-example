@@ -5,7 +5,12 @@
       ul
         - spending.errors.full_messages.each do |error|
           li = error
+  = form.label :name
   = form.text_field :name
-  = form.number_field :amount
-  = form.text_field :category
+  = form.label :description
+  = form.text_field :description
+  = form.label :amount
+  = form.number_field :amount, in: 0.01..10000.0, step: 0.5
+  = form.label :category
+  = form.select :category, Spending.categories.keys.map{ |key| [key.humanize, key] }, selected: spending.category || :other
   = form.submit
