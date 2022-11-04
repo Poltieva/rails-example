@@ -4,7 +4,8 @@ div.header
     = link_to "New spending", new_spending_path, class: "btn btn--primary"
 
 = render 'filter'
-ul
+
+.container-fluid
   = turbo_frame_tag 'all_spendings' do
     - @spendings.each do |spending|
       = render "spending", spending: spending
@@ -12,3 +13,5 @@ ul
 = render 'total_spendings', sum: @spendings_sum
 
 = javascript_include_tag 'handleFiltering'
+
+

@@ -1,3 +1,11 @@
 
 = turbo_frame_tag "spending_#{spending.id}" do
-  li #{spending.name} #{spending.description} #{spending.amount} #{spending.category} #{button_to 'Edit', edit_spending_path(spending.id), method: :get} #{button_to 'Delete', spending, method: :delete}
+  div.border.border-dark.p-4
+    div.row
+      div.col-sm Name: #{spending.name}
+      div.col-sm Category: #{spending.category}
+      div.col-sm Amount: #{spending.amount}
+    div.row
+      div.col-sm = spending.description
+    div.row
+      div.d-flex.col-sm #{button_to 'Edit', edit_spending_path(spending.id), method: :get, class: 'm-2'} #{button_to 'Delete', spending, method: :delete, class: 'm-2'}
