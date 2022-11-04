@@ -10,7 +10,7 @@
   = form.label :description
   = form.text_field :description
   = form.label :amount
-  = form.number_field :amount, in: 0.01..10000.0, step: 0.5
+  = form.number_field :amount
   = form.label :category
   = form.select :category, Spending.categories.keys.map{ |key| [key.humanize, key] }, selected: spending.category || :other
   = form.submit

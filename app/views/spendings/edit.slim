@@ -1,2 +1,5 @@
 = turbo_frame_tag "spending_#{@spending.id}" do
   = render 'form', spending: @spending
+
+= turbo_stream.replace 'total' do
+  p = display_amount(current_user.spendings.sum(:amount_cents))

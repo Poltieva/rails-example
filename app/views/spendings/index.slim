@@ -7,3 +7,7 @@ ul
   = turbo_frame_tag 'all_spendings' do
     - @spendings.each do |spending|
       = render "spending", spending: spending
+
+div
+  = turbo_frame_tag 'total' do
+    p = display_amount(@spendings.sum(:amount_cents))

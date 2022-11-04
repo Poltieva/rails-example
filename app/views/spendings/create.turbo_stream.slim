@@ -3,3 +3,6 @@
 
 = turbo_stream.replace "messagesContainer" do
   = render "layouts/flash", flash: { notice: "Spending was successfully created." }
+
+= turbo_stream.replace 'total' do
+  p = display_amount(current_user.spendings.sum(:amount_cents))
