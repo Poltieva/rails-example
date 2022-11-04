@@ -1,4 +1,7 @@
 # README
+## URL
+https://desolate-reef-74003.herokuapp.com/
+
 ## How to run project first time
 
 Add .env file (look at .env.example)
