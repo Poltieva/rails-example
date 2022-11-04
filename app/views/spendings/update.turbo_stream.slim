@@ -3,3 +3,6 @@
 
 = turbo_stream.replace "messagesContainer" do
   = render "layouts/flash", flash: { notice: "Spending was successfully updated." }
+
+= turbo_stream.replace 'total' do
+  = render 'total_spendings', sum: @spendings_sum

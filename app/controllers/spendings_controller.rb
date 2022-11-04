@@ -10,6 +10,7 @@ class SpendingsController < ApplicationController
     @spending = current_user.spendings.build(spending_params)
     respond_to do |format|
       if @spending.save
+        @spendings_sum = current_user.spendings.sum(:amount_cents)
         format.turbo_stream
         format.html do
           redirect_to spendings_path, status: :see_other,
@@ -30,6 +31,7 @@ class SpendingsController < ApplicationController
 
   def index
     @spendings = current_user.spendings
+    @spendings_sum = current_user.spendings.sum(:amount_cents)
   end
 
   def new
@@ -41,6 +43,7 @@ class SpendingsController < ApplicationController
   def update
     respond_to do |format|
       if @spending.update(spending_params)
+        @spendings_sum = current_user.spendings.sum(:amount_cents)
         format.turbo_stream
         format.html do
           redirect_to spendings_path, status: :see_other,
@@ -54,6 +57,7 @@ class SpendingsController < ApplicationController
 
   def destroy
     @spending.destroy
+    @spendings_sum = current_user.spendings.sum(:amount_cents)
     respond_to do |format|
       format.html { redirect_to spendings_path, notice: 'Spending was successfully destroyed' }
       format.turbo_stream

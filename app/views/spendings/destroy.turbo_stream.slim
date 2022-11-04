@@ -5,4 +5,4 @@
   = render "layouts/flash", flash: { notice: "Spending was successfully destroyed." }
 
 = turbo_stream.replace 'total' do
-  p = display_amount(current_user.spendings.sum(:amount_cents))
+  = render 'total_spendings', sum: @spendings_sum
