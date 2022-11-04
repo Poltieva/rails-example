@@ -13,10 +13,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js" ></script>
   </head>
 
-  <ul class="navbar-nav mr-auto">
-    <li class="nav-item active">
-      <a class="nav-link" href="/ideas">Ideas</a>
-    </li>
+  <ul class="navbar-nav mr-auto p-3 bg-info text-white">
     <p class="navbar-text float-right">
       <% if user_signed_in? %>
         Logged in as <strong><%= current_user.email %></strong>.

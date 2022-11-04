@@ -33,3 +33,4 @@ filter {
     background: orangered;
     visibility: visible;
 }
+#spending_amount { width: 70px }
