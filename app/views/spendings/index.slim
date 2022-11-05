@@ -9,7 +9,7 @@ div.header
   .row
     label for="page-url" Share your #{filter(@filter)}spendings
   .row.d-flex
-    textarea.w-50 id="page-url" = page_url(build_params(current_user.uuid, params))
+    textarea.w-50 id="page-url" = page_url(uuid: build_params(current_user.id, params))
     button class="btn clipboard-btn w-auto" data-clipboard-action="copy" data-clipboard-target="#page-url"
       | Copy
 

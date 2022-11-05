@@ -15,8 +15,9 @@ module SpendingsHelper
     end
   end
 
-  def build_params(uuid, params_hash)
-    result = {uuid: uuid}
+  def build_params(id, params_hash)
+    crypt = ActiveSupport::MessageEncryptor.new(Rails.application.secrets.secret_key_base[0..31])
+    result = {user_id: id}
 
     if params_hash[:filter]
       result[:filter] = params_hash[:filter]
@@ -25,6 +26,6 @@ module SpendingsHelper
       result[:category] = params_hash[:category]
     end
 
-    result
+    crypt.encrypt_and_sign(result.to_json)
   end
 end
