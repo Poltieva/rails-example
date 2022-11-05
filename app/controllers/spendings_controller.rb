@@ -3,7 +3,7 @@
 class SpendingsController < ApplicationController
   include TurboStreamErrorsConcern
 
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :page
   before_action :find_spending, only: %i[edit update destroy]
 
   def create
@@ -72,6 +72,11 @@ class SpendingsController < ApplicationController
       format.html { redirect_to spendings_path, notice: 'Spending was successfully destroyed' }
       format.turbo_stream
     end
+  end
+
+  def page
+    @user = User.where(uuid: params[:uuid]).last
+    @spendings = Spending.where(user: @user)
   end
 
   private

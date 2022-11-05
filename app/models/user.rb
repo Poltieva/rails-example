@@ -10,6 +10,8 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: { case_sensitive: false },
             format: { with: /\A[a-zA-Z0-9_\.]+\z/ }
 
+  after_create -> { self.update(uuid: SecureRandom.uuid) }
+
   # Allow to sign in with email or username
   attr_writer :login
 

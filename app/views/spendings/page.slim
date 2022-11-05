@@ -1,0 +1,11 @@
+h1 #{@user.username}'s spendings
+
+.container-fluid
+  - @spendings.each do |spending|
+    div.border.border-dark.p-4
+      div.row
+        div.col-sm Name: #{spending.name}
+        div.col-sm Category: #{spending.category}
+        div.col-sm Amount: #{spending.amount}
+      div.row
+        div.col-sm = spending.description
