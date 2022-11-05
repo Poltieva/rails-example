@@ -80,6 +80,7 @@ GEM
     bootsnap (1.13.0)
       msgpack (~> 1.2)
     builder (3.2.4)
+    clipboard-rails (1.7.1)
     coderay (1.1.3)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
@@ -282,6 +283,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
+  clipboard-rails
   devise
   factory_bot_rails
   faker!

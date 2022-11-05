@@ -52,6 +52,8 @@ gem 'slim-rails'
 
 gem 'rubocop-rails'
 
+gem 'clipboard-rails'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

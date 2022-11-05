@@ -5,6 +5,14 @@ div.header
 
 = render 'filter'
 
+.container-fluid.pb-4.pt-1
+  .row
+    label for="page-url" Share your #{filter(@filter)}spendings
+  .row.d-flex
+    textarea.w-50 id="page-url" = page_url(build_params(current_user.uuid, params))
+    button class="btn clipboard-btn w-auto" data-clipboard-action="copy" data-clipboard-target="#page-url"
+      | Copy
+
 .container-fluid
   = turbo_frame_tag 'all_spendings' do
     - @spendings.each do |spending|
@@ -13,5 +21,6 @@ div.header
 = render 'total_spendings', sum: @spendings_sum
 
 = javascript_include_tag 'handleFiltering'
+= javascript_include_tag 'copyLink'
 
 

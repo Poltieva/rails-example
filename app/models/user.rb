@@ -12,6 +12,17 @@ class User < ApplicationRecord
 
   after_create -> { self.update(uuid: SecureRandom.uuid) }
 
+  def filtered_spendings(params)
+    case params[:filter]
+    when 'amount'
+      spendings.order(amount_cents: :desc)
+    when 'category'
+      spendings.with_category(params[:category])
+    else
+      spendings
+    end
+  end
+
   # Allow to sign in with email or username
   attr_writer :login
 

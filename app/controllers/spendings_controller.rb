@@ -31,16 +31,7 @@ class SpendingsController < ApplicationController
 
   def index
     @filter = params[:filter]
-
-    case @filter
-    when 'amount'
-      @spendings = current_user.spendings.order(amount_cents: :desc)
-    when 'category'
-      @spendings = current_user.spendings.with_category(params[:category])
-    else
-      @spendings = current_user.spendings
-    end
-
+    @spendings = current_user.filtered_spendings(params)
     @spendings_sum = @spendings.sum(:amount_cents)
   end
 
@@ -76,7 +67,7 @@ class SpendingsController < ApplicationController
 
   def page
     @user = User.where(uuid: params[:uuid]).last
-    @spendings = Spending.where(user: @user)
+    @spendings = @user.filtered_spendings(params)
     @spendings_sum = @spendings.sum(:amount_cents)
   end
 
