@@ -9,3 +9,4 @@ h1 #{@user.username}'s spendings
         div.col-sm Amount: #{spending.amount}
       div.row
         div.col-sm = spending.description
+p = display_amount(@spendings_sum)

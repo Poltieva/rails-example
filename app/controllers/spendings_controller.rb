@@ -77,6 +77,7 @@ class SpendingsController < ApplicationController
   def page
     @user = User.where(uuid: params[:uuid]).last
     @spendings = Spending.where(user: @user)
+    @spendings_sum = @spendings.sum(:amount_cents)
   end
 
   private
