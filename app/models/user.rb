@@ -10,8 +10,6 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: { case_sensitive: false },
             format: { with: /\A[a-zA-Z0-9_\.]+\z/ }
 
-  after_create -> { self.update(uuid: SecureRandom.uuid) }
-
   def filtered_spendings(params)
     case params[:filter]
     when 'amount'
