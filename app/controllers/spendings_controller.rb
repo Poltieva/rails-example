@@ -66,7 +66,7 @@ class SpendingsController < ApplicationController
   end
 
   def page
-    decypted_params = JSON.parse(crypt.decrypt_and_verify(params[:uuid])).symbolize_keys
+    decypted_params = crypt.decrypt(params[:uuid])
     @user = User.find(decypted_params[:user_id])
     @spendings = @user.filtered_spendings(decypted_params)
     @spendings_sum = @spendings.sum(:amount_cents)
@@ -85,6 +85,6 @@ class SpendingsController < ApplicationController
   end
 
   def crypt
-    @crypt ||= ActiveSupport::MessageEncryptor.new(Rails.application.secrets.secret_key_base[0..31])
+    @crypt ||= MessageEncryptor.new
   end
 end

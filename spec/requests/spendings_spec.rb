@@ -30,7 +30,7 @@ RSpec.describe 'Spendings', type: :request do
   describe 'GET /page/:uuid' do
     context 'with valid uuid' do
       let(:encrypted_uuid) do
-        crypt = ActiveSupport::MessageEncryptor.new(Rails.application.secrets.secret_key_base[0..31])
+        crypt = MessageEncryptor.new
         crypt.encrypt_and_sign({user_id: user.id, filter: :amount}.to_json)
       end
       it "should render a page with user's spendings" do
