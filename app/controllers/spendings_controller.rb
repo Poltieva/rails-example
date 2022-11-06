@@ -85,6 +85,6 @@ class SpendingsController < ApplicationController
   end
 
   def crypt
-    @crypt ||= ActiveSupport::MessageEncryptor.new(Rails.application.credentials.secret_key_base[0..31])
+    @crypt ||= ActiveSupport::MessageEncryptor.new(Rails.application.secrets.secret_key_base[0..31])
   end
 end

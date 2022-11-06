@@ -16,7 +16,7 @@ module SpendingsHelper
   end
 
   def build_params(id, params_hash)
-    crypt = ActiveSupport::MessageEncryptor.new(Rails.application.credentials.secret_key_base[0..31])
+    crypt = ActiveSupport::MessageEncryptor.new(Rails.application.secrets.secret_key_base[0..31])
     result = {user_id: id}
 
     if params_hash[:filter]
