@@ -35,5 +35,5 @@ Use `heroku logs` to see the logs
 Use `heroku run [command]` to run rails / rake commands
 
 ###Coverage
-![](../../Screenshot 2022-11-06 at 13.17.14.png)
+![](../../Screenshot 2022-11-06 at 13.49.40.png)
 
