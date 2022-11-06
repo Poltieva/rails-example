@@ -70,6 +70,8 @@ class SpendingsController < ApplicationController
     @user = User.find(decypted_params[:user_id])
     @spendings = @user.filtered_spendings(decypted_params)
     @spendings_sum = @spendings.sum(:amount_cents)
+  rescue ActiveSupport::MessageEncryptor::InvalidMessage
+    render file: "#{Rails.root}/public/404.html", layout: false, status: :not_found
   end
 
   private

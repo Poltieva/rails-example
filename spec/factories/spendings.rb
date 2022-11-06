@@ -6,7 +6,7 @@ FactoryBot.define do
     name { Faker::ChuckNorris.fact }
     description { Faker::Lorem.paragraph }
     amount { rand(0.01...1000) }
-    category { Spending.categories.sample }
+    category { Spending.categories.keys.sample }
     association :user
   end
 end

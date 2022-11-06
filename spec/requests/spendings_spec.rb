@@ -18,6 +18,8 @@ RSpec.describe 'Spendings', type: :request do
                    { controller: 'spendings', action: 'destroy', id: '1' })
     assert_routing({ path: 'spendings/1/edit', method: :get },
                    { controller: 'spendings', action: 'edit', id: '1' })
+    assert_routing({ path: 'page/some-uuid', method: :get },
+                   { controller: 'spendings', action: 'page', uuid: 'some-uuid' })
   end
 
   let(:user) { create(:user) }
@@ -25,6 +27,25 @@ RSpec.describe 'Spendings', type: :request do
 
   before(:each) { sign_in(user) }
 
+  describe 'GET /page/:uuid' do
+    context 'with valid uuid' do
+      let(:encrypted_uuid) do
+        crypt = ActiveSupport::MessageEncryptor.new(Rails.application.secrets.secret_key_base[0..31])
+        crypt.encrypt_and_sign({user_id: user.id, filter: :amount}.to_json)
+      end
+      it "should render a page with user's spendings" do
+        get page_url(uuid: encrypted_uuid)
+        expect(response).to have_http_status :ok
+        expect(response).to render_template :page
+      end
+    end
+    context 'with invalid uuid' do
+      it 'should return 404.html' do
+        get page_url(uuid: 'not valid uuid')
+        expect(response).to have_http_status :not_found
+      end
+    end
+  end
   describe 'GET /index' do
     before(:each) do
       user
