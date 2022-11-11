@@ -46,6 +46,6 @@ Use `heroku logs` to see the logs
 Use `heroku run [command]` to run rails / rake commands
 
 ## Coverage
+<img width="1279" alt="Screenshot 2022-11-06 at 13 49 40" src="https://user-images.githubusercontent.com/48015289/201281294-a38c697f-02b3-47b0-b313-c7958ac9d19d.png">
 
-![](./Screenshot 2022-11-06 at 13.17.14.png)
 
