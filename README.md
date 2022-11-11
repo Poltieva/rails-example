@@ -1,5 +1,5 @@
 # README
-#Info
+# Info
 This is an example rails application with the following functionality:
 - User should be able to sign up and sign in with the login and password. - User should be able to add/edit/delete the spending inside the app.
 - User should be able to see the list of his spendings with a total value, filter the list on several parameters (e.g., category, amount).
@@ -38,13 +38,13 @@ hostname `host.docker.internal`
 maintenance database `example_app_development`
 username & password from `.env` `POSTGRES_USER_DEV` and `POSTGRES_PW_DEV`
 
-##Push changes to heroku
+## Push changes to heroku
 Use `git push heroku main` to push main branch to Heroku
 Use `heroku run rake db:migrate` to run migrations
 Use `heroku open` to launch app in the browser
 Use `heroku logs` to see the logs
 Use `heroku run [command]` to run rails / rake commands
 
-##Coverage
-![](../../Screenshot 2022-11-06 at 13.49.40.png)
+## Coverage
+![](Screenshot 2022-11-06 at 13.17.14.png)
 
