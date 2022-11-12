@@ -44,5 +44,22 @@ services:
     ports:
       - "1025:1025"
       - "1080:1080"
+  redis:
+    image: redis:6.2-alpine
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server
+  sidekiq:
+    depends_on:
+      - redis
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: bundle exec sidekiq
+    volumes:
+      - .:/myapp
+    env_file:
+    - '.env'
 volumes:
   pgdata:
